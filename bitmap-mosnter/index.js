@@ -11,14 +11,16 @@ bitmaphandler.bitmapReader('bitmap1.bmp', (err, data) => {
   console.log(newObject);
 
   //takes new object and transforms the color data
-  bittransform.grey(newObject);
-  var newBuffer = bitobject.Buffobject.prototype.toBuffer(newObject);
-//   newobject.colorpalette.fill(128);
+  bittransform.someOtherColor(newObject);
+  //newobject.colorpalette.fill(128);
 
-//takes a transfromed data and writes data to a new bitmapfile
+  //creates a new buffer from tranformed object
+  var newBuffer = newObject.toBuffer();
+
+  //takes a transfromed data and writes data to a new bitmapfile
   bitmaphandler.newbitmapfile(newBuffer,(err, data) => {
-    var transformedObject = new bitobject.Buffobject(data);
-    console.log(transformedObject);
+  //would like to add a function to read transformed buffer
+    console.log(data);
     //return transformedObject;
   });
  //   fs.writeFile('./lulwat.bmp', data);
