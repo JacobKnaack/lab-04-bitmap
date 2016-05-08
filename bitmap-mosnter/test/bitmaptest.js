@@ -14,24 +14,63 @@ describe('testing the reading and writing functions', function() {
         done();
       });
     });
-
-  //it('should write data to new file', function(done) {
-  //  readwrite.newbitmapfile(buffer, function(err, data) {
-  //    expect(err.to.equal(null);
-  //    expect())
-  //    done();
-  //  });
-  //});
   });
 });
 
 describe('testing the parser', function() {
   describe('testing whether parser is constructing correct info', function() {
-    it('should return two parts of the file header', function(done) {
+    it('should return BM from file header', function(done) {
       readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
         var testobject = new parse.Buffobject(data);
         expect(testobject.bheader).to.equal('BM');
+        done();
+      });
+    });
+
+    it ('should return 11078 as the size', function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
+        expect(testobject.size).to.equal(11078);
+        done();
+      });
+    });
+
+    it ('should return 256 color', function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
         expect(testobject.colors).to.equal(256);
+        done();
+      });
+    });
+
+    it('should return 256 important colors', function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
+        expect(testobject.importantcolors).to.equal(256);
+        done();
+      });
+    });
+
+    it('should return a width of 100', function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
+        expect(testobject.width).to.equal(100);
+        done();
+      });
+    });
+
+    it('should return a height of 100',  function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
+        expect(testobject.height).to.equal(100);
+        done();
+      });
+    });
+
+    it('should return a bits per pixel value of 8', function(done) {
+      readwrite.bitmapReader('bitmap1.bmp', function(err, data) {
+        var testobject = new parse.Buffobject(data);
+        expect(testobject.bitsperpixel).to.equal(8);
         done();
       });
     });
